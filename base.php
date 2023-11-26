@@ -52,7 +52,7 @@
 			</div>
 			<div class="col-5">
 			<p>
-				&copy; 2023 Rubens Garcia Junior. Todos os direitos reservados.
+				&copy; 2023 Rubens Garcia e Fábio Kazuhiro. Todos os direitos reservados.
 			</p>
 			</div>
 			</div>
