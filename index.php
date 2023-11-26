@@ -9,49 +9,7 @@
       background-image: url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?w=1380&t=st=1694369832~exp=1694370432~hmac=37ae88cf7bdade0fefc949d4f8ad717a48c2cfb923dcf6e5c0c0269834e899a4');
     "
   >
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-2">
-        <div class="container-fluid">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="QuemSomos.html">Quem Somos</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="Ondecomprar.html"
-                >Onde Comprar</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="Faleconosco.html"
-                >Fale Conosco</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.html"
-                >Login</a
-              >
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
-    </header>
+    <?php echo navbar() ?>
 
     <div
       id="carouselExampleIndicators"

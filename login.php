@@ -1,12 +1,13 @@
 <?php
 require_once 'base.php';
-echo basePage(
+echo simpleBase(
     <<<EOF
-    <main class="container-fluid" style="display: flexbox; flex-direction: row;">
-    <h1 style="color: white">Login</h1>
-    <form class="mx-auto" action="login.php" method="post">
-        <div class="row mb-3">
-        <div class="form-group col-6">
+    <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100vw; height: 100vh;">
+    <div style="width:30vw">
+    <h1>Login</h1>
+    <form class="mx-auto" action="login.php" method="post" style="align-items: center">
+        <div class="mb-3">
+        <div style="border">
             <input
             class="form-control"
             type="text"
@@ -16,8 +17,8 @@ echo basePage(
             />
         </div>
         </div>
-        <div class="row mb-4">
-        <div class="form-group col-6">
+        <div class="mb-4">
+        <div>
             <input
             class="form-control"
             type="password"
@@ -29,6 +30,9 @@ echo basePage(
         </div>
         <input type="submit" value="login" class="btn btn-primary" />
     </form>
+    <a class="btn btn-dark" href="github.php" style="color:white"><span><img src="assets/github_icon.png"></span>sign in with github</a>
+    <a class="btn btn-light btn-outline-secondary" href=""><span><img src="assets/email_icon.png"></span>sign up with email</a>
+    </div>
     </main>
     EOF
 );
