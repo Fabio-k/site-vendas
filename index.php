@@ -6,7 +6,7 @@
     style="
       background-size: cover;
       background-repeat: no-repeat;
-      background-image: url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?w=1380&t=st=1694369832~exp=1694370432~hmac=37ae88cf7bdade0fefc949d4f8ad717a48c2cfb923dcf6e5c0c0269834e899a4');
+      background-color: indigo;
     "
   >
     <header>
