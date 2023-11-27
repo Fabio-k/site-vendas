@@ -37,5 +37,9 @@ if (!isset($_GET['code'])) {
     $username = $user_data['login'];
     $avatar_url = $user_data['avatar_url'];
     $name = $user_data['name'];
+    
+    session_start();
+    $_SESSION['username'] = $username;
+    $_SESSION['id'] = $github_id;
     header("Location: http://localhost");
 }
