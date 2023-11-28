@@ -23,18 +23,13 @@
             $links = "";
         }
 		return <<<EOF
-		<head>
+		    <head>
 			<meta charset="utf-8" />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<meta name="description" content="Site" />
 			<meta name="author" content="Rubens Garcia Junior" />
 			<title>Apresentação de Site</title>
-			<link
-				rel="stylesheet"
-				href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-				integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-				crossorigin="anonymous"
-			/><link rel="stylesheet" type="text/css" href="$css">
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="$css">
 			$links
 		</head>
 		EOF;
@@ -92,15 +87,14 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    />
-                    <button class="btn btn-outline-success" type="submit">
-                    Search
-                    </button>
+                    <div class="input-group">
+                        <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search"
+                        />
+                        <span class="input-group-text">search</span>
+                    </div>
                 </form>
                 </div>
             </nav>

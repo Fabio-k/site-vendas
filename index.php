@@ -55,7 +55,7 @@
         data-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
+        <span class="sr-only"></span>
       </a>
       <a
         class="carousel-control-next"
@@ -64,7 +64,7 @@
         data-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Próximo</span>
+        <span class="sr-only"></span>
       </a>
     </div>
     <br />

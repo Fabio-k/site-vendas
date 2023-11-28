@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div
+      class="position-fixed"
+      style="
+        width: 20%;
+        height: 100vh;
+        border-right: 3px solid rgb(181, 180, 180);
+        padding-left: 10px;
+      "
+    >
+      <p>painel do adiministrador</p>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <p style="margin-bottom: 0px">criar novo registro</p>
+          <ul>
+            <li><a href="" id="createUser">usuario</a></li>
+            <li><a href="" id="createProduct">produto</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="" id="read">mostrar registros</a></li>
+        <li class="nav-item">
+          <p id="update" style="margin-bottom: 0px">Atualizar registros</p>
+        </li>
+        <li class="nav-item">
+          <p id="delete" style="margin-bottom: 0px">Deletar registros</p>
+        </li>
+      </ul>
+    </div>
+    <main class="row" style="width: 80%; margin-left: 20%; height: 100vh">
+      <div
+        id="content"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        "
+      ></div>
+    </main>
+    <script>
+      document
+        .getElementById('createUser')
+        .addEventListener('click', function () {
+          event.preventDefault()
+          document.getElementById(
+            'content'
+          ).innerHTML = `<div class='card' style="margin: 0">
+                <p class="card-header">inserir Usuario</p>
+                <form action="inserir.php" method="post" class="card-body">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password class="form-control" id="senha" name="senha" placeholder="digite a senha">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="digite o email">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
+                </form>
+            </div>
+        `
+        })
+
+      document
+        .getElementById('createProduct')
+        .addEventListener('click', function () {
+          event.preventDefault()
+          document.getElementById(
+            'content'
+          ).innerHTML = `<div class='card col-4'>
+                <p class="card-header">inserir Produto</p>
+                <form action="inserir.php" method="post" class="card-body">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password class="form-control" id="preço" name="preço" placeholder="digite a preço">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="digite o email">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
+                </form>
+            </div>
+        `
+        })
+
+      document.getElementById('read').addEventListener('click', function () {
+        event.preventDefault()
+        document.getElementById('content').innerHTML = `<div class='card col-4'>
+                <p class="card-header">Visualizar Registros</p>
+                <form action="read.php" method="post" class="card-body">
+                    <div class="mb-3">
+                        <select name="tabela" id="tabela" class="form-control">
+                            <option value="" selected>Selecione uma tabela</option>
+                            <option value="usuario">usuario</option>
+                            <option value="produto">produto</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
+                </form>
+            </div>
+        `
+      })
+      document.getElementById('update').addEventListener('click', function () {
+        event.preventDefault()
+        document.getElementById('content').innerHTML = `<div class='card col-4'>
+                <p class="card-header">Atualizar Registros</p>
+                <form action="read.php" method="post" class="card-body">
+                    <div class="mb-3">
+                        <select name="tabela" id="tabela" class="form-control">
+                            <option value="" selected>Selecione uma tabela</option>
+                            <option value="usuario">usuario</option>
+                            <option value="produto">produto</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
+                </form>
+            </div>
+        `
+      })
+
+      document.getElementById('delete').addEventListener('click', function () {
+        event.preventDefault()
+        document.getElementById(
+          'content'
+        ).innerHTML = `<div class='card' style="width:20vw">
+                <p class="card-header">Deletar Registros</p>
+                <form action="read.php" method="post" class="card-body">
+                    <div class="mb-3">
+                        <select name="tabela" id="tabela" class="form-control">
+                            <option value="" selected>Selecione uma tabela</option>
+                            <option value="usuario">usuario</option>
+                            <option value="produto">produto</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
+                </form>
+            </div>
+        `
+      })
+    </script>
+  </body>
+</html>
