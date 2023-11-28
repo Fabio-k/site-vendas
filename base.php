@@ -76,7 +76,7 @@
                     <a
                         class="nav-link active"
                         aria-current="page"
-                        href="Faleconosco.html"
+                        href="Faleconosco.php"
                         >Fale Conosco</a
                     >
                     </li>
@@ -86,16 +86,7 @@
                     >
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search"
-                        />
-                        <span class="input-group-text">search</span>
-                    </div>
-                </form>
+                
                 </div>
             </nav>
             </header>
