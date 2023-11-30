@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +7,6 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
     />
   </head>
   <body>
@@ -26,7 +20,7 @@
       "
     >
       <p class="text-center">painel do adiministrador</p>
-      <ul class="nav flex-column">
+      <ul class="nav nav-tabs flex-column">
         <li class="nav-item">
           <a class="nav-link" href="#" style="margin-bottom: 0px" id="create"
             >criar novo registro</a
@@ -59,18 +53,17 @@
       ></div>
     </main>
     <script>
-      document.getElementById('create').addEventListener('click', function () {
-        event.preventDefault()
+      function showForm() {
         document.getElementById('content').innerHTML = `<div class='card col-4'>
                 <p class="card-header">inserir Registro</p>
-                <form action="../infra/insert.php" method="post" class="card-body">
+                <form action="../infra/insert.php" method="post" class="card-body" enctype="multipart/form-data">
                     <select name="tipo" id="createTabela" class="form-control mb-3">
                         <option value="" selected>Selecione uma tabela</option>
                         <option value="usuario">usuario</option>
                         <option value="produto">produto</option>
                     </select>
                     <div id="form-body"></div>
-                    <input type="submit" class="btn btn-primary" value="criar">
+                    
                 </form>
             </div>
         `
@@ -83,37 +76,58 @@
             if (selectedOption === 'usuario') {
               formBody.innerHTML = `
                  <div class="mb-3">
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome">
-                        <p>minimo 3 caracteres</p>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome" required>
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="digite a senha">
-                        <p>minimo 8 caracteres</p>
-                        <p>uma letra</p>
-                        <p>um numero</p>
+                        <input type="password" class="form-control" id="senha" name="senha" placeholder="digite a senha" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="digite o email">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="digite o email" required>
                     </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
               `
             } else if (selectedOption === 'produto') {
               formBody.innerHTML = `
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome">
+                    <div class="mb-3" style="width:10vw; ">
+                      <img id="preview" class="img-fluid" src="" alt="Image preview" style="display: none; border-radius:10px">
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="preço" name="preço" placeholder="digite a preço">
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome do produto"
+                        required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="digite o email">
+                        <input type="number" class="form-control" id="preço" name="preço" placeholder="digite a preço" required>
                     </div>
+                    <div class="mb-3">
+                      <textarea name="descricao" id="descricao" cols="30" rows="10" class="form-control" placeholder="digite a descrição"></textarea>  
+                    </div>
+                    <div class="mb-3">
+                      <input class="form-control" type="file" id="image" name="image">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="criar">
               `
+              document
+                .getElementById('image')
+                .addEventListener('change', (event) => {
+                  const reader = new FileReader()
+                  reader.onload = () => {
+                    const preview = document.getElementById('preview')
+                    preview.src = reader.result
+                    preview.style.display = 'block'
+                  }
+                  reader.readAsDataURL(event.target.files[0])
+                })
             } else {
               formBody.innerHTML = `
                   <!-- HTML padrão -->
               `
             }
           })
+      }
+      document.addEventListener('DOMContentLoaded', showForm)
+      document.getElementById('create').addEventListener('click', function () {
+        event.preventDefault()
+        showForm()
       })
 
       document.getElementById('read').addEventListener('click', function () {
@@ -122,7 +136,7 @@
                 <p class="card-header">Visualizar Registros</p>
                 <form action="../infra/select.php" method="post" class="card-body">
                     <div class="mb-3">
-                        <select name="tabela" id="tabela" class="form-control">
+                        <select name="tipo" id="tabela" class="form-control">
                             <option value="" selected>Selecione uma tabela</option>
                             <option value="usuario">usuario</option>
                             <option value="produto">produto</option>
@@ -140,16 +154,16 @@
         event.preventDefault()
         document.getElementById('content').innerHTML = `<div class='card col-4'>
                 <p class="card-header">Atualizar Registros</p>
-                <form action="read.php" method="post" class="card-body">
+                <form action="../infra/atualizar.php" method="post" class="card-body">
                     <div class="mb-3">
-                        <select name="tabela" id="tabela" class="form-control">
+                        <select name="tabela" id="tabela" class="form-control" required>
                             <option value="" selected>Selecione uma tabela</option>
                             <option value="usuario">usuario</option>
                             <option value="produto">produto</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id">
+                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id" required>
                     </div>
                     <input type="submit" class="btn btn-primary" value="alterar">
                 </form>
@@ -159,14 +173,11 @@
 
       document.getElementById('delete').addEventListener('click', function () {
         event.preventDefault()
-        document.getElementById(
-          'content'
-        ).innerHTML = `<div class='card' style="width:20vw">
+        document.getElementById('content').innerHTML = `<div class='card col-4'>
                 <div class="card-header d-flex justify-content-between align-tems-center">
                   <p class="">Deletar Registros</p>
-                  <i class="fas fa-trash text-end"></i> 
                 </div>
-                <form action="read.php" method="post" class="card-body">
+                <form action="../infra/excluir.php" method="get" class="card-body">
                     <div class="mb-3">
                         <select name="tabela" id="tabela" class="form-control">
                             <option value="" selected>Selecione uma tabela</option>

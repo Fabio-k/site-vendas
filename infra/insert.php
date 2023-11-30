@@ -1,7 +1,11 @@
 <?php
+    include_once "../base.php";
+    echo myHeader();
+?>
+<div style="width:100vw; height:100vh; display:flex; align-items:center; justify-content: center; flex-direction:column">
+<?php
 if($_POST){
     require_once "conexao.php";
-    
     if($_POST["tipo"] == "usuario"){
         $username = $_POST['nome'];
         $password = $_POST['senha'];
@@ -18,8 +22,8 @@ if($_POST){
         }
 
         if($status == ""){
-            if (isEmail_Or_User_InUse($conn)){
-                $status .= "$erro usuario ou email já cadastrado";
+            if (isEmail_InUse($conn)){
+                $status .= "$erro email já cadastrado";
             }else{
                 if($conn->query($sql_insert) === TRUE){
                     $status =  "usuario criado com sucesso";
@@ -31,39 +35,49 @@ if($_POST){
         }
 
         echo <<<EOF
-           <div style="width:100vw; height:100vh; display:flex; align-items:center; justify-content; center; flex-direction:column">
-                <h1>dados recebidos:</h1>
-                <h2>nome: $username</h2>
-                <h2>email: $email</h2>
-                <h2>senha: $password</h2>
-                <h1>Status da requisição:<br> $status</h1>
-           <a href="../painel_adm/index.html">Voltar</a>
-           </div>
+            <div style="width:50vw">
+                <h3>Status do banco de dados: $bd_status</h1>
+                <h3>Status da requisição: $status</h1>
+                <h4>dados recebidos:</h1>
+                <p>nome: $username</p>
+                <p>email: $email</p>
+                <p>senha: $password</p>
+            </div>
         EOF;
     }
-    if ($_POST["tipo"] == "produto"){
+    else if ($_POST["tipo"] == "produto"){
         $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
+        $preco = $_POST['preço'];
         $descricao = $_POST['descricao'];
         $status = "";
         $erro = "<span style='color:red'>Erro:</span>";
-        $sql_insert = "INSERT INTO produtos (nome, preco, descricao) VALUES ('$nome', '$preco', '$descricao')";
+        $path_image = null;
         
+        if(isset($_FILES["image"])) {
+            echo "image set";
+            $target_dir = "../assets/uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            if(move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)){
+                $path_image = $target_file;
+        }
+}
+
+        $sql_insert = "INSERT INTO produtos(nome, preco, descricao, path_image) VALUES ('$nome', '$preco', '$descricao', '$path_image')";
         if($conn->query($sql_insert) === TRUE){
             $status =  "produto criado com sucesso";
         }
         else{
-            $status = "$erro: " . $sql . "<br>" . $conn->error;
+            $status = "$erro: " . $sql_insert . "<br>" . $conn->error;
         }
 
         echo <<<EOF
-           <div style="width:100vw; height:100vh; display:flex; align-items:center; justify-content; center; flex-direction:column">
-                <h1>dados recebidos:</h1>
-                <h2>nome: $nome</h2>
-                <h2>preco: $preco</h2>
-                <h2>descricao: $descricao</h2>
-                <h1>Status da requisição:<br> $status</h1>
-           <a href="../painel_adm/index.html">Voltar</a>
+           <div style="width:50vw">
+                <h3>Status do banco de dados: $bd_status</h1>
+                <h3>Status da requisição: $status</h1>
+                <h4>dados recebidos:</h1>
+                <p>nome: $nome</p>
+                <p>preco: $preco</p>
+                <p>descricao: $descricao</p>
            </div>
         EOF;
     }
@@ -83,19 +97,16 @@ function verify_password(){
     return $status;
 }
 
-function isEmail_Or_User_InUse($conn){
-    $username = $_POST['nome'];
+function isEmail_InUse($conn){
     $email = $_POST['email'];
-    $sql_verify = "SELECT * FROM users WHERE nome = '$username'";
     $sql_verify_email = "SELECT * FROM users WHERE email = '$email'";
-    $result = $conn->query($sql_verify);
     $result_email = $conn->query($sql_verify_email);
-    if($result->num_rows > 0){
-        return true;
-    }
     if($result_email->num_rows > 0){
         return true;
     }
     return false;
 }
 
+?>
+<a href="../painel_adm/index.html" class="btn btn-success">Voltar</a>
+</div>
