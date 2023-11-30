@@ -18,7 +18,11 @@ echo myHeader();
                         <input type="text" class="form-control" value="$data[nome]" disabled>
                     </div>
                     <div class="mb-3">
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" value="$data[email]" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" value="$data[endereco]" disabled>
                     </div>
                      <input type="hidden" name="id" value="$id">
                      <input type="hidden" name="id" value="$tabela">

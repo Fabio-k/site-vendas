@@ -22,6 +22,9 @@ if($_POST){
                 <div class="mb-3">
                     <input type="email" class="form-control" value="$row[email]">
                 </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" value="$row[endereco]">
+                </div>
             EOF;
         } else {
             echo "Nenhum resultado encontrado";

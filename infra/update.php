@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 if($_POST){
     if($_POST["tipo"] == "usuario"){
-        $stmt = $conn->prepare("UPDATE users SET nome = ?, email = ? WHERE id = ?");
-        $stmt->bind_param("ssi", $_POST['nome'], $_POST['email'], $_POST['id']);
+        $stmt = $conn->prepare("UPDATE users SET nome = ?, email = ?, endereco = ? WHERE id = ?");
+        $stmt->bind_param("ssi", $_POST['nome'], $_POST['email'], $_POST['id'], $_POST['endereco']);
 
         if($stmt->execute()){
             echo "usuario atualizado com sucesso";

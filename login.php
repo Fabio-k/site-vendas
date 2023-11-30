@@ -34,17 +34,16 @@ echo simpleBase(
         </div>
         <input type="submit" value="login" class="btn btn-primary" />
     </form>
-    <a class="btn btn-dark" href="github.php" style="color:white"><span><img src="assets/github_icon.png"></span>sign in with github</a>
     <a class="btn btn-light btn-outline-secondary" href=""><span><img src="assets/email_icon.png"></span>sign up with email</a>
     </div>
     </main>
     EOF
 );
-require_once 'infra/connection.php';
+require_once 'infra/conexao.php';
 if ($_POST){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $query = "SELECT * FROM user WHERE nome = '$username'";
+    $query = "SELECT * FROM users WHERE nome = '$username'";
     
     $result = $conn->query($query);
     if (mysqli_num_rows($result) > 0){

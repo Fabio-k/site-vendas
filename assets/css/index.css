@@ -1,0 +1,30 @@
+#menu {
+  width: 20%;
+  height: 100vh;
+  border-right: 3px solid rgb(181, 180, 180);
+  padding-left: 10px;
+}
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.sidebar {
+  background-color: #f8f9fa;
+  height: 100vh;
+  padding: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para os itens do menu */
+.sidebar .nav-link {
+  color: #898989;
+  font-weight: bold;
+}
+
+/* Estilo para o item do menu ativo ou ao passar o mouse */
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  color: #007bff;
+}

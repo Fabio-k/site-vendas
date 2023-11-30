@@ -11,9 +11,10 @@ if($_POST){
         $password = $_POST['senha'];
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $email = $_POST['email'];
+        $endereco = $_POST['endereco'];
         $status = "";
         $erro = "<span style='color:red'>Erro:</span>";
-        $sql_insert = "INSERT INTO users (nome, password_hash, email) VALUES ('$username', '$hashed_password', '$email')";
+        $sql_insert = "INSERT INTO users (nome, password_hash, email, endereco) VALUES ('$username', '$hashed_password', '$email', '$endereco')";
         
         $status .= verify_password();
 
@@ -42,6 +43,7 @@ if($_POST){
                 <p>nome: $username</p>
                 <p>email: $email</p>
                 <p>senha: $password</p>
+                <p>endereco: $endereco</p>
             </div>
         EOF;
     }
