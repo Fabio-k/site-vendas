@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-require_once 'base.php';
+require_once '../base.php';
 echo basePage(
   <<<EOF
   <div class="container mt-5 text-light text-center">

@@ -95,7 +95,7 @@ echo myHeader();
                 ?>
             </tbody>
         </table>
-        <a href="../painel_adm/index.html" class="btn btn-success">voltar</a>
+        <a href="../painel_adm/" class="btn btn-success">voltar</a>
     </div>
     
 </body>

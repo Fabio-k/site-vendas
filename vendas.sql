@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `vendas`
 --
-
+CREATE DATABASE IF NOT EXISTS `vendas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 -- --------------------------------------------------------
 
 --

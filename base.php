@@ -1,27 +1,5 @@
 <?php
-	function myHeader($type="full", $css = "assets/css/base.css"){
-        if($type == "full"){
-            $links = <<<EOF
-                <script
-                    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous"
-                ></script>
-                <script
-                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-                    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                    crossorigin="anonymous"
-                ></script>
-                <script
-                    src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                    crossorigin="anonymous"
-                ></script>
-                EOF;
-        }
-        else{
-            $links = "";
-        }
+	function myHeader($css = "assets/css/base.css"){
 		return <<<EOF
 		    <head>
 			<meta charset="utf-8" />
@@ -29,8 +7,7 @@
 			<meta name="description" content="Site" />
 			<meta name="author" content="Rubens Garcia Junior" />
 			<title>Apresentação de Site</title>
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" type="text/css" href="$css">
-			$links
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>          <link rel="stylesheet" type="text/css" href="$css">
 		</head>
 		EOF;
 	}
@@ -56,6 +33,30 @@
 	EOF;
 	}
     function navbar(){
+        session_start();
+        $login = "";
+        if(isset($_SESSION['username'])){
+            $login = <<<EOT
+                <div class="dropdown">
+                   <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button">
+                        $_SESSION[username]
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="perfil.php">conta</a></li>
+                        <li><a class="dropdown-item" href="compra.php">compras</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    </ul>
+                </div>
+            EOT;
+        }
+        else{
+            $login = <<<EOT
+                    <a class="nav-link text-white" aria-current="page" href="login.php"
+                        >Login</a
+                    >
+            EOT;
+        }
+        
         return <<<EOT
             <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-2">
@@ -80,13 +81,12 @@
                         >Fale Conosco</a
                     >
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="login.php"
-                        >Login</a
-                    >
-                    </li>
                 </ul>
-                
+                <div class="d-flex">
+                    $login
+                    <a class="nav-link text-white" aria-current="page" href="carrinho.php">
+                        <span><img src="assets/carrinho.png"></span>
+                    </a>
                 </div>
             </nav>
             </header>

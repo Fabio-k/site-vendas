@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['adm-id'])){
+    header('Location: ../view/login_adm');
+  }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -46,6 +52,8 @@
                         <option value="" selected>Selecione uma tabela</option>
                         <option value="usuario">usuario</option>
                         <option value="produto">produto</option>
+                        <option value="adm">adm</option>
+                        <option value="produto-destaque">produtos-destaque</option>
                     </select>
                     <div id="form-body"></div>
                     
@@ -105,11 +113,33 @@
                   }
                   reader.readAsDataURL(event.target.files[0])
                 })
-            } else {
+            } else if(selectedOption === 'produto-destaque'){
               formBody.innerHTML = `
-                  <!-- HTML padrão -->
+                <div class="mb-3">
+                    <input type="number" class="form-control" id="id" name="id" placeholder="digite o id do produto" required>
+                </div>
+                <input type="submit" class="btn btn-primary" value="criar">
               `
-            }
+            } <?php 
+            session_start();
+            if ($_SESSION['adm-row'] == 'adm') {
+              echo <<<EOF
+              else if (selectedOption === 'adm') {
+                formBody.innerHTML =`
+                    <div class="mb-3">
+                          <input type="text" class="form-control" id="nome" name="nome" placeholder="digite o nome" required>
+                      </div>
+                      <div class="mb-3">
+                          <input type="password" class="form-control" id="senha" name="senha" placeholder="digite a senha" required>
+                      </div>
+                      <div class="mb-3">
+                          <input type="text" class="form-control" name="cargo" placeholder="digite o cargo" required>
+                      </div>
+                      <input type="submit" class="btn btn-primary" value="criar">`
+              }
+            EOF;
+            } ?>
+            
           })
       }
       document.addEventListener('DOMContentLoaded', showForm)

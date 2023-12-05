@@ -82,6 +82,63 @@ if($_POST){
                 <p>descricao: $descricao</p>
            </div>
         EOF;
+    } elseif ($_POST['tipo'] == 'adm') {
+        $username = $_POST['nome'];
+        $password = $_POST['senha'];
+        $cargo = $_POST['cargo'];
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $status = "";
+        $erro = "<span style='color:red'>Erro:</span>";
+        $sql_insert = "INSERT INTO adm (username, password_hash, cargo) VALUES ('$username', '$hashed_password', '$cargo')";
+        
+        $status .= verify_password();
+
+        if($status == ""){ 
+            if($conn->query($sql_insert) === TRUE){
+                $status =  "usuario criado com sucesso";
+            }
+            else{
+                $status = "$erro: " . $sql . "<br>" . $conn->error;
+            }
+            
+        }
+
+        echo <<<EOF
+            <div style="width:50vw">
+                <h3>Status do banco de dados: $bd_status</h1>
+                <h3>Status da requisição: $status</h1>
+                <h4>dados recebidos:</h1>
+                <p>nome: $username</p>
+                <p>senha: $password</p>
+            </div>
+        EOF;
+    }
+    elseif($_POST['tipo'] == 'produto-destaque'){
+        $id = $_POST['id'];
+        $sql_insert = "INSERT INTO produto_destaque (id_produto) VALUES ($id)";
+        $sql_select = "SELECT * FROM produtos WHERE id = '$id'";
+        $result = $conn->query($sql_select);
+        if($result->num_rows == 0){
+            $status = "produto não encontrado";
+        }
+        else{
+            if($conn->query($sql_insert) === TRUE){
+            $status =  "produto destacado com sucesso";
+            }
+            else{
+                $status = "$erro: " . $sql_insert . "<br>" . $conn->error;
+            }
+        }
+        
+
+        echo <<<EOF
+           <div style="width:50vw">
+                <h3>Status do banco de dados: $bd_status</h1>
+                <h3>Status da requisição: $status</h1>
+                <h4>dados recebidos:</h1>
+                <p>id: $id</p>
+           </div>
+        EOF;
     }
     $conn->close();
 }
@@ -110,5 +167,5 @@ function isEmail_InUse($conn){
 }
 
 ?>
-<a href="../painel_adm/index.html" class="btn btn-success">Voltar</a>
+<a href="../painel_adm/" class="btn btn-success">Voltar</a>
 </div>
