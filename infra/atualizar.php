@@ -44,10 +44,19 @@ if($_POST){
                     <input type="number" class="form-control "name="preco" value="$row[preco]">
                 </div>
                 <div class="mb-3">
+                    <input type="number" class="form-control "name="quantidade" value="$row[quantidade]">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control "name="desconto" value="$row[desconto]">
+                </div>
+                <div class="mb-3">
                     <input type="text" class="form-control" name="descricao" value="$row[descricao]">
                 </div>
                 <div class="mb-3">
                     <input type="file" class="form-control" id="image" name="image" value="$row[path_image]">
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" class="form-control" name="path_image" value="$row[path_image]">
                 </div>
                 <script>document
                 .getElementById('image')

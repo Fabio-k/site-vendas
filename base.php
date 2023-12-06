@@ -37,9 +37,11 @@
         $login = "";
         if(isset($_SESSION['username'])){
             $login = <<<EOT
-                <div class="dropdown">
-                   <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button">
+                <div class="dropdown d-flex align-items-center">
+                   <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" type="button">
+                        <span class="text-white">
                         $_SESSION[username]
+                        </span>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="perfil.php">conta</a></li>
@@ -58,37 +60,39 @@
         }
         
         return <<<EOT
-            <header>
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-2">
-                <div class="container-fluid">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" href="QuemSomos.html">Quem Somos</a>
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link active"
-                        aria-current="page"
-                        href="Ondecomprar.html"
-                        >Onde Comprar</a
-                    >
-                    </li>
-                    <li class="nav-item">
-                    <a
-                        class="nav-link active"
-                        aria-current="page"
-                        href="Faleconosco.php"
-                        >Fale Conosco</a
-                    >
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    $login
-                    <a class="nav-link text-white" aria-current="page" href="carrinho.php">
-                        <span><img src="assets/carrinho.png"></span>
-                    </a>
+        <header class="container-fluid navbar navbar-expand navbar-dark bg-dark py-2">
+            <div class="row">
+                <div class="col-12" style="width:100vw">
+                    <div style="width:100%">
+                        <a href="index.php">
+                            <img width="300px" src="/assets/logo.png" alt="logo"/>
+                        </a>
+                    </div>
                 </div>
-            </nav>
+                <nav class=" col-9 d-flex">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="QuemSomos.html">Quem Somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Ondecomprar.html">Onde Comprar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Faleconosco.php">Fale Conosco</a>
+                        </li>
+                    </ul>
+                    
+                </nav>
+                <div class="col-3">
+                    <div class="d-flex ">
+                            $login
+                            <a class="nav-link" href="carrinho.php">
+                                <span><img height="30px" src="/assets/shopping-cart.png" alt="shopping-cart"/></span>
+                            </a>
+                        </div>
+                </div>
+                    
+                </div>
             </header>
         EOT;
     }
@@ -99,7 +103,7 @@
         return <<<EOT
         $header
         <html lang='pt-br'>
-        <body> 
+        <body style="background-color: #dddbdb"> 
         $nav
         $content
         $footer

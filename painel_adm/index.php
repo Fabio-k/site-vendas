@@ -95,6 +95,12 @@
                         <input type="number" class="form-control" id="preço" name="preço" placeholder="digite a preço" required>
                     </div>
                     <div class="mb-3">
+                        <input type="number" class="form-control" id="quantidade" name="quantidade" placeholder="digite a quantidade" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="desconto" name="desconto" placeholder="digite o desconto" required>
+                    </div>
+                    <div class="mb-3">
                       <textarea name="descricao" id="descricao" cols="30" rows="10" class="form-control" placeholder="digite a descrição"></textarea>  
                     </div>
                     <div class="mb-3">

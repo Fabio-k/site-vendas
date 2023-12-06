@@ -12,7 +12,7 @@ if($_POST){
             echo "usuario atualizado com sucesso";
         }
     }elseif($_POST['tipo'] == "produto"){
-        $path_image = null;
+        $path_image = $_POST['path_image'];
         
         if(isset($_FILES["image"])) {
             echo "image set";
@@ -22,8 +22,8 @@ if($_POST){
                 $path_image = $target_file;
             }
         }
-        $stmt = $conn->prepare("UPDATE produtos SET nome = ?, preco = ?, descricao = ?, path_image= ? WHERE id = ?");
-        $stmt->bind_param("ssssi", $_POST['nome'], $_POST['preco'], $_POST['descricao'], $path_image, $_POST['id']);
+        $stmt = $conn->prepare("UPDATE produtos SET nome = ?, preco = ?, descricao = ?, path_image= ?, quantidade= ?, desconto= ? WHERE id = ?");
+        $stmt->bind_param("ssssiii", $_POST['nome'], $_POST['preco'], $_POST['descricao'], $path_image, $_POST['quantidade'], $_POST['desconto'], $_POST['id']);
 
         if($stmt->execute()){
             echo "produto atualizado com sucesso";
@@ -32,4 +32,4 @@ if($_POST){
 }
 
 ?>
-<a href="../painel_adm/index.html" class="btn btn-success">voltar</a>
+<a href="../painel_adm/" class="btn btn-success">voltar</a>
