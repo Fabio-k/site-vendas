@@ -1,5 +1,5 @@
 <?php
-function productTemplate($img, $title, $price,$desconto, $id){
+function productTemplate($img, $title, $price,$desconto, $id, $quantidade){
     $display_price = "<p class='h3 text-dark'>R$ $price</p>";
     if($desconto != "0"){
         $discounted_price = $price - $price * $desconto / 100;
@@ -9,7 +9,7 @@ function productTemplate($img, $title, $price,$desconto, $id){
     
         <div class="col-4 d-flex justify-content-center" style="padding: 10px">
             <div class="card" style="width: 18rem">
-                <a href="produto/index.php?id=$id&titulo=$title&img=$img&price=$price&desconto=$desconto" style="text-decoration:none">
+                <a href="produto/index.php?id=$id&titulo=$title&img=$img&price=$price&desconto=$desconto&quantidade=$quantidade" style="text-decoration:none">
                     <img
                     class="card-img-top"
                     src="$img"

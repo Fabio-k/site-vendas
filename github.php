@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 if (!isset($_GET['code'])) {
     $url = "https://github.com/login/oauth/authorize?client_id=687dea1145cd28dd5e2b&redirect_uri=http://localhost/github.php";
     header("Location: $url");
@@ -37,9 +40,26 @@ if (!isset($_GET['code'])) {
     $username = $user_data['login'];
     $avatar_url = $user_data['avatar_url'];
     $name = $user_data['name'];
-    
+    echo "--" . $github_id . "--" . $username . "--";
+    require_once 'infra/conexao.php';
+    $sql = "SELECT * FROM users WHERE github_id = $github_id";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    if(mysqli_num_rows($result) == 0){
+        $sql = "INSERT INTO users (github_id, nome) VALUES ($github_id, '$username')";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $sql = "SELECT * FROM users WHERE github_id = $github_id";
+        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $row = mysqli_fetch_assoc($result);
+        $username = $row['nome'];
+        $id = $row['id'];
+    }else{
+        $row = mysqli_fetch_assoc($result);
+        $username = $row['nome'];
+        $id = $row['id'];
+    }
     session_start();
     $_SESSION['username'] = $username;
-    $_SESSION['id'] = $github_id;
-    header("Location: http://localhost");
+    $_SESSION['id'] = $id;
+    header("Location: /view/index.php");
+    
 }

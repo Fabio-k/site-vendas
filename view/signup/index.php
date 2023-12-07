@@ -28,5 +28,5 @@ if($_POST){
     else{
         echo "Erro: " . $sql . "<br>" . $conn->error;
     }
-}
+}$conn->close();
 ?>

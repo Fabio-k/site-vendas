@@ -59,4 +59,5 @@ if ($_POST){
         echo "Usuário não encontrado";
     }
 }
+$conn->close();
 ?>

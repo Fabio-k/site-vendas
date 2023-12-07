@@ -210,7 +210,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <input type="number" class="form-control" id="id" name="id" placeholder="digite o id" required>
+                        <input type="number" class="form-control" name="id" placeholder="digite o id" required>
                     </div>
                     <input type="submit" class="btn btn-primary" value="deletar">
                 </form>

@@ -75,6 +75,7 @@ if($_POST){
         }
     
     }
+    $conn->close();
 }
 
 ?>

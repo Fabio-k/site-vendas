@@ -13,7 +13,7 @@
 	}
 	function footer(){
 		return <<<EOF
-		<footer class="bg-dark text-light py-2">
+		<footer class="bg-dark text-light py-2" style="margin-top:auto">
 			<div class="container">
 			<div class="row">
 			<div class="col-4 text-right">
@@ -46,14 +46,14 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="perfil.php">conta</a></li>
                         <li><a class="dropdown-item" href="compra.php">compras</a></li>
-                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="/view/index.php?logout=true">Logout</a></li>
                     </ul>
                 </div>
             EOT;
         }
         else{
             $login = <<<EOT
-                    <a class="nav-link text-white" aria-current="page" href="login.php"
+                    <a class="nav-link text-white" aria-current="page" href="/view/login.php"
                         >Login</a
                     >
             EOT;
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-12" style="width:100vw">
                     <div style="width:100%">
-                        <a href="index.php">
+                        <a href="/view/index.php">
                             <img width="300px" src="/assets/logo.png" alt="logo"/>
                         </a>
                     </div>
@@ -86,7 +86,7 @@
                 <div class="col-3">
                     <div class="d-flex ">
                             $login
-                            <a class="nav-link" href="carrinho.php">
+                            <a class="nav-link" href="/view/carrinho/">
                                 <span><img height="30px" src="/assets/shopping-cart.png" alt="shopping-cart"/></span>
                             </a>
                         </div>
@@ -103,7 +103,7 @@
         return <<<EOT
         $header
         <html lang='pt-br'>
-        <body style="background-color: #dddbdb"> 
+        <body style="background-color: #dddbdb; display:flex; flex-direction:column; min-height:100vh"> 
         $nav
         $content
         $footer
@@ -121,4 +121,10 @@
         </body>
         </html>
         EOT;
+    }
+
+    if(isset($_GET['logout'])){
+        session_start();
+        session_destroy();
+        header("Location: index.php");
     }
